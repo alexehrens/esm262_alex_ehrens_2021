@@ -1,0 +1,18 @@
+---
+title: "Assignment 1a"
+author: "Alex Ehrens"
+date: "2/9/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Why I'm taking ESM 262:
+
+I'm taking Computing for Environmental Science because I am pursuing the Environmental Data Science focus to complement my specialization in Water Resources Management. I am hoping to develop strong data science skills that I can use in my professional career. The push for open data is one of the key priorities for water resources management in California. That is particularly true of groundwater management, which is hindered by limited availability and accessibility of reliable data of groundwater levels and water quality. I have become interested in issues related to groundwater management in my time at the Bren School, so I hope to develop data science skills to further my development in that area. 
+
+## 2. My data science background:
+
+Before coming to Bren, I worked in environmental consulting and a significant portion of my job involved analyzing and managing large datasets. I did this for a variety of projects including stream condition surveys, road erosion assessments, and continuous air pollutant monitoring. However, this was mostly done in Microsoft Excel and Word. Some RStudio was used, but it was very limited and only involved running existing code to analyze data. Since then, I've used Rstudio and GIS extensively for Bren coursework, my summer internship, group project work, and for a part time job. I feel much better about my R abilities this year than I did last year, but am excited to get more practice.
