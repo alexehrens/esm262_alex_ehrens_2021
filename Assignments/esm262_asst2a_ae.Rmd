@@ -1,0 +1,25 @@
+---
+title: "ESM262 Assignment 2a"
+author: "Alex Ehrens"
+date: "2/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+
+## source power function 
+source(here("assignments", "power_watts_fun.R"))
+```
+
+### Run function for 4 highway speeds
+```{r}
+# mass of truck, m = 31752 kg
+# surface area of car, surface_area = 9 m^2
+
+# run function for each of the highway speeds (30, 80 km/hr, 120 km/hr, 40 km/hr) -- need to convert units for the last 3 speeds
+power_watts(mass_kg = 31752, velocity = c(30, 80, 120, 40), surface_area = 9)
+```
+
