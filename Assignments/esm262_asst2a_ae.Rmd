@@ -6,20 +6,51 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+### attach packages
 library(tidyverse)
 library(here)
 
-## source power function 
-source(here("assignments", "power_watts_fun.R"))
+### source power function
+source(here("Assignments", "R", "power_watts_fun.R"))
 ```
 
 ### Run function for 4 highway speeds
 ```{r}
-# mass of truck, m = 31752 kg
-# surface area of car, surface_area = 9 m^2
+### set variable values
+mass_kg <- 31752
+surface_area <- 9
 
-# run function for each of the highway speeds (30, 80 km/hr, 120 km/hr, 40 km/hr) -- need to convert units for the last 3 speeds
-power_watts(mass_kg = 31752, velocity = c(30, 80, 120, 40), surface_area = 9)
+### for last 3 velocities - need to convert from km/hr to m/s
+velocities_km_hr <- c(80, 120, 40)
+velocities_m_s <- c(30, (velocities_km_hr * (1000/(60*60))))
+
+# run function for each of the highway speeds (30 m/s, 80 km/hr, 120 km/hr, 40 km/hr)
+power_output1 <- power_watts(mass_kg = mass_kg, velocity = c(velocities_m_s), surface_area = surface_area)
+
+# run same function for a vehicle that is 75% the mass of the first vehicle
+power_output2 <- power_watts(mass_kg = mass_kg*0.75, velocity = c(velocities_m_s), surface_area = surface_area)
 ```
 
+### Plot power vs speed 
+```{r}
+# create dataset with velocities (in m/s) and corresponding power (in watts) from both runs
+power_speed_runs <- data.frame(velocities_m_s, power_output1, power_output2)
+
+# plot power as a function of speed
+ggplot(data = power_speed_runs) +
+  geom_line(aes(x = velocities_m_s, y = power_output1, color = "Output 1 - Full Vehicle Mass")) +
+  geom_line(aes(x = velocities_m_s, y = power_output2, color = "Output 2 - 75% Vehicle Mass")) +
+  scale_color_manual(values = c("blue", "gold")) +
+  theme_bw() +
+  theme(legend.title = element_blank(),
+        legend.position = "bottom") +
+  labs(title = "Power required to keep a car moving as a function of vehicle speed",
+       x = "Vehicle velocity (in m/s)",
+       y = "Power (in Watts)")
+```
+
+#### END ASSIGNMENT 2A
