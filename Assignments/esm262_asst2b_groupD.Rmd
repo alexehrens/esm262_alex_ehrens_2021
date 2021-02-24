@@ -1,0 +1,81 @@
+---
+title: "ESM262 Asst. 2b"
+author: "Alex Ehrens"
+date: "2/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+### attach packages
+library(tidyverse)
+library(here)
+
+### source power function
+source(here("Assignments", "R", "power_watts_fun.R"))
+```
+
+```{r Set variables}
+# create data frame of 4 possible cars
+possible_cars = data.frame(name = c("A", "B", "C", "D"), mass_kg = c(10000, 65000, 38000, 30000), surface_area = c(22, 30, 22, 10))
+
+# create random sample of 100 highways with different rolling coefficient
+nsample = 100
+highways = runif(min = 0.01, max = 0.03, n = nsample)
+
+# convert speed from km/hr to m/s
+speed_km_hr = 120
+speed_m_s = speed_km_hr*(1000/(60*60))
+
+# add to possible_cars to make it a matrix
+power_watts_all = as.data.frame(matrix(nrow=length(highways), ncol=nrow(possible_cars))) %>% 
+  rename("A" = "V1", "B" = "V2", "C" = "V3", "D" = "V4")
+```
+
+### Run power function for each possible car type and highway using for loop method 
+```{r create for loop}
+# create for loop to run power function
+for(i in 1:nrow(possible_cars)){
+    power_watts_all[,i] = power_watts(surface_area = possible_cars$surface_area[i], mass_kg = possible_cars$mass_kg[i], velocity = speed_m_s, rolling = highways)
+  }
+```
+
+```{r create boxplot}
+# pivot longer to get into tidy format of power for each type of car
+power_watts_all_long = power_watts_all %>% 
+  pivot_longer(cols=everything(), names_to="car", values_to="power")
+
+# create boxplot
+ggplot(power_watts_all_long, aes(car, power, fill=car)) +
+  geom_boxplot() +
+  ggtitle("For Loop Power Results") +
+  labs(fill = "Car",
+       x = "Possible Cars",
+       y = "Power (in Watts)")
+```
+
+### Run power function for each possible car type and highway using `pmap` method
+```{r}
+## run function using pmap
+power_watts_pmap = pmap(list(surface_area = possible_cars$surface_area, mass_kg = possible_cars$mass_kg), power_watts, velocity = speed_m_s, rolling = highways)
+
+# convert to data frame for graphing
+power_watts_pmap_df <- as.data.frame(power_watts_pmap, col.names = possible_cars$name)
+
+# pivot longer for easier plotting
+power_watts_pmap_long = power_watts_pmap_df %>% 
+  pivot_longer(cols=everything(), names_to="car", values_to="power")
+
+# create another boxplot
+ggplot(power_watts_all_long, aes(car, power, fill=car)) +
+  geom_boxplot() +
+  ggtitle("Pmap Power Results") +
+  labs(fill = "Car",
+       x = "Possible Cars",
+       y = "Power (in Watts)")
+```
+
+### END ASSIGNMENT 2B

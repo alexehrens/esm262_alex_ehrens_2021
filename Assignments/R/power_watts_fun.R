@@ -9,7 +9,10 @@
 ### drag = aerodynamic resistive coefficient = 0.3
 
 power_watts = function(rolling = 0.015, mass_kg, gravity = 9.8, velocity, surface_area, density_air = 1.2, drag = 0.3){
+  # error checking - make sure inputs are positive
+  if (mass_kg | velocity | surface_area | rolling | gravity | density_air | drag < 0) return("Inputs must be positive")
   
+  # function
   P_watts = rolling * mass_kg * gravity * velocity + (1/2) * surface_area * density_air * drag * (velocity)^3
   return(P_watts)
   

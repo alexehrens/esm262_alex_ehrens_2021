@@ -29,7 +29,7 @@ velocities_km_hr <- c(80, 120, 40)
 velocities_m_s <- c(30, (velocities_km_hr * (1000/(60*60))))
 
 # run function for each of the highway speeds (30 m/s, 80 km/hr, 120 km/hr, 40 km/hr)
-power_output1 <- power_watts(mass_kg = mass_kg, velocity = c(velocities_m_s), surface_area = surface_area)
+power_output1 <- power_watts(mass_kg = mass_kg, velocity = velocities_m_s, surface_area = surface_area)
 
 # run same function for a vehicle that is 75% the mass of the first vehicle
 power_output2 <- power_watts(mass_kg = mass_kg*0.75, velocity = c(velocities_m_s), surface_area = surface_area)
