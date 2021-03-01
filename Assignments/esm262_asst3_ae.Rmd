@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # attach packages
 library(tidyverse)
+library(here)
 ```
 
 ### Using the while() loop function for compound interest
@@ -20,7 +21,7 @@ balance = 1
 interest_rate = 0.02
 compound_per_yr = 1
 yr = 0
-target = 20000
+target = 100000
 
 source(here("Assignments", "R", "interest_while_fun.R"))
 

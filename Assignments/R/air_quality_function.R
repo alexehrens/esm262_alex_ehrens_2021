@@ -5,7 +5,6 @@
 air_quality_index <- function(pm2.5_conc){
   # error_checking
   if(pm2.5_conc < 0) return("Concentrations must be positive")
- # if(pm2.5_conc > 500) return("Concentrations are beyond U.S. AQ index") - want this for individual values, put into case_when
   
   # determine air quality index levels based on concentrations
   AQ_index <- case_when(
