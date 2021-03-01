@@ -1,0 +1,23 @@
+---
+title: "Assignment 4 - Fish Factors"
+author: "Alex Ehrens"
+date: "3/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# attach packages
+library(tidyverse)
+library(here)
+```
+
+```{r}
+# read in vector of fish names
+fish <- read.table(here("Assignments", "fish.txt"), header = TRUE)
+
+# source the fish factor function
+source(here("Assignments", "R", "fish_factors_function.R"))
+```
+

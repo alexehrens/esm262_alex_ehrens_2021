@@ -2,6 +2,9 @@
 
 ## air quality index for particulate matter
 
+# parameters - pm2.5_conc = concentration of particulate matter of in the air
+### NOTE - thresholds for air quality index levels are specific to the United States Air Quality Index (AQI), this function does not apply to other countries
+
 air_quality_index <- function(pm2.5_conc){
   # error_checking
   if(pm2.5_conc < 0) return("Concentrations must be positive")
