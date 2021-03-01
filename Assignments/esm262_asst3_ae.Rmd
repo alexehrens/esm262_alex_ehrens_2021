@@ -42,7 +42,7 @@ pm2.5_conc = runif(min = 1, max = 400, n = 30)
 source(here("Assignments", "R", "air_quality_function.R"))
 
 # run function for generated PM2.5 concentration data
-index_levels <- air_quality_index(pm2.5_conc = pm2.5_conc)
+index_levels <- air_quality_index(pm2.5_conc)
 
 # print results
 index_levels
@@ -57,7 +57,7 @@ air_quality_results <- data.frame(pm2.5_conc, index_levels)
 pm2.5_conc_low <- runif(min = 1, max = 100, n = 30)
 
 # run function for generated PM2.5 concentration data
-index_levels_low <- air_quality_index(pm2.5_conc = pm2.5_conc_low)
+index_levels_low <- air_quality_index(pm2.5_conc_low)
 
 index_levels_low
 
@@ -65,7 +65,7 @@ index_levels_low
 pm2.5_conc_high <- runif(min = 250, max = 500, n = 30)
 
 # run function for generated PM2.5 concentration data
-index_levels_high <- air_quality_index(pm2.5_conc = pm2.5_conc_high)
+index_levels_high <- air_quality_index(pm2.5_conc_high)
 
 index_levels_high
 ```
