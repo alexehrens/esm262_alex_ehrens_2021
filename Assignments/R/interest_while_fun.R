@@ -12,14 +12,17 @@
 ### Final Amount = initial_balance*(1 + (interest_rate/number_of_times_compounded_per_year))^(number_of_times_compounded_per_year*years)
 
 
-interest_fun <- while((balance < target) && (yr < 1000)){
+interest_fun <- function(balance, target, interest_rate, compound_per_yr, yr){
   # error checking - make sure inputs are positive
   if(balance < 0 | interest_rate < 0 | compound_per_yr < 0 | yr < 0) return("Conditions must all be positive!")
+  
+  while((balance < target) && (yr < 1000)){
   
   # calculate amount of money in account each year using compound interest formula
   balance = balance*(1 + (interest_rate/compound_per_yr))^(compound_per_yr*yr)
   
   # count the number of years
   yr = yr+1
- }
-
+  }
+  interest_results <- data.frame(balance, yr)
+}

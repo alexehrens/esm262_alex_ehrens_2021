@@ -11,6 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 # attach packages
 library(tidyverse)
 library(here)
+
+# source interest function
+source(here("Assignments", "R", "interest_while_fun.R"))
 ```
 
 ### Using the while() loop function for compound interest
@@ -23,14 +26,14 @@ compound_per_yr = 1
 yr = 0
 target = 100000
 
-source(here("Assignments", "R", "interest_while_fun.R"))
+interest_results <- interest_fun(balance, target, interest_rate, compound_per_yr, yr)
 
 # return values for the amount of money and years it takes to reach the target balance in the account
-balance
-yr
+#balance
+#yr
 
 # make data frame of results
-interest_results <- data.frame(balance, yr)
+#interest_results <- data.frame(balance, yr)
 ```
 
 ### Using a case_when() function for Air Quality Index levels
